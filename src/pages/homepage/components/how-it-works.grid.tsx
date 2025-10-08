@@ -27,7 +27,7 @@ export function HowItWorksGrid() {
 	}
 
 	return (
-		<div className='h-full w-full'>
+		<div className='h-full w-full hidden lg:flex'>
 			<LayoutGrid
 				cards={cards.map(card => ({
 					...card,

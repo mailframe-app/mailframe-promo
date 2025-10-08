@@ -191,7 +191,7 @@ export const eslintBoundariesConfig: EslintBoundariesConfig = {
 							[
 								'shared',
 								{
-									segment: '(ui|api|types)'
+									segment: '(ui|api|types|icons)'
 								}
 							]
 						],

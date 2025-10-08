@@ -13,7 +13,7 @@ export function FeatureCard({
 }) {
 	return (
 		<Card
-			className={`group bg-background isolate flex flex-col justify-between overflow-hidden rounded-2xl shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] dark:bg-[#262626] ${feature.colSpan}`}
+			className={`group bg-background isolate flex flex-col justify-between overflow-hidden rounded-2xl shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] dark:bg-[#21272b] ${feature.colSpan}`}
 		>
 			<div className='h-32 p-6 pb-3'>
 				<motion.h3

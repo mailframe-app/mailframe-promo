@@ -1,3 +1,4 @@
+
 import { MetaHead } from '@/shared/ui'
 
 import { BackgroundRippleEffect } from '../components/ui-background'

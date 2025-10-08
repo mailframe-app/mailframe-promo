@@ -3,9 +3,9 @@
 import { motion } from 'motion/react'
 
 import { PointerHighlight } from '@/shared/ui/pointer-highlight'
-
 import { FeatureCard } from '../components/features.card'
 import { features } from '../components/features.grid'
+
 
 export function FeaturesSection() {
 	return (

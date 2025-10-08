@@ -5,6 +5,7 @@ import { ContactsFeature } from './contacts.feature'
 import { MarqueeEditor } from './editor.feature'
 import { AnimatedBeam } from './kontur.feature'
 
+
 export const features = [
 	{
 		title: 'Единая платформа',
