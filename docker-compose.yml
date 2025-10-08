@@ -1,0 +1,66 @@
+services:
+  mailframe-promo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mailframe-promo
+    hostname: mailframe-promo
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    networks:
+      - mailframe-network
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'bun',
+          '--eval',
+          'fetch("http://localhost:3000").then(() => process.exit(0)).catch(() => process.exit(1))'
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  mailframe-docs:
+    image: ghcr.io/codex-team/codex.docs:v2.2.3
+    container_name: mailframe-docs
+    hostname: mailframe-docs
+    restart: unless-stopped
+    ports:
+      - '3100:3100'
+    environment:
+      - APP_CONFIG_auth_password=$CODEX_AUTH_PASSWORD
+    volumes:
+      - ./docs/uploads:/usr/src/app/uploads
+      - ./docs/db:/usr/src/app/db
+      - ./docs/docs-config.yaml:/usr/src/app/docs-config.yaml
+    networks:
+      - mailframe-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: mailframe-nginx
+    hostname: mailframe-nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      mailframe-promo:
+        condition: service_healthy
+      mailframe-docs:
+        condition: service_started
+    networks:
+      - mailframe-network
+
+networks:
+  mailframe-network:
+    driver: bridge
